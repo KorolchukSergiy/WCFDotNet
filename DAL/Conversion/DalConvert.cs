@@ -22,7 +22,7 @@ namespace DAL.Conversion
             return GetUser;
         }
 
-        public static DalCpuFromShop 
+        public static DalCpuFromShop
             CpuToDalCpuShop(CpuFromShop Cpu)
         {
             DalCpuFromShop GetCpu = new DalCpuFromShop()
@@ -55,50 +55,70 @@ namespace DAL.Conversion
             return GetBllPost;
         }
 
-        static public DalMotherBoardFromShop 
+        static public DalMotherBoardFromShop
             MBFromShopToDalMbFromShop(MotherBoardFromShop MBShop)
         {
             DalMotherBoardFromShop DalMBFromShop
                 = new DalMotherBoardFromShop
-            {
-                Id = MBShop.Id,
-                Name = MBShop.Name,
-                ChipSet = MBShop.ChipSet,
-                Image = MBShop.Image,
-                PciE = MBShop.PciE,
-                RAM = MBShop.RAM,
-                Producer = MBShop.Producer.Name,
-                Quantity = MBShop.Quantity,
-                SalaryPrice = MBShop.SalaryPrice,
-                Socket = MBShop.MBSocket,
-                USB = MBShop.USB,
-            };
+                {
+                    Id = MBShop.Id,
+                    Name = MBShop.Name,
+                    ChipSet = MBShop.ChipSet,
+                    Image = MBShop.Image,
+                    PciE = MBShop.PciE,
+                    RAM = MBShop.RAM,
+                    Producer = MBShop.Producer.Name,
+                    Quantity = MBShop.Quantity,
+                    SalaryPrice = MBShop.SalaryPrice,
+                    Socket = MBShop.MBSocket,
+                    USB = MBShop.USB,
+                };
             return DalMBFromShop;
         }
 
-        public static DalMotherBoardFromProvider 
+        public static DalMotherBoardFromProvider
             MBproviderToDalMBProvider(MotherBoardFromProvider MBProvider)
         {
             DalMotherBoardFromProvider DalMBProvider =
                 new DalMotherBoardFromProvider
                 {
-
+                    Id = MBProvider.Id,
+                    Name = MBProvider.Name,
+                    ChipSet = MBProvider.ChipSet,
+                    Image = MBProvider.Image,
+                    PciE = MBProvider.PciE,
+                    RAM = MBProvider.RAM,
+                    Producer = MBProvider.Producer.Name,
+                    MBSocket = MBProvider.MBSocket,
+                    USB = MBProvider.USB,
+                    BuyPrice = MBProvider.BuyPrice,
+                    Provider = MBProvider.Provider.Name
                 };
             return DalMBProvider;
         }
 
-        public static DalCpuFromProvider 
-            CpuProviderToDalCpuProvider(CpuFromProvider MBProvider)
+        public static DalCpuFromProvider
+            CpuProviderToDalCpuProvider(CpuFromProvider CpuProvider)
         {
             DalCpuFromProvider DalCpuProvider =
                 new DalCpuFromProvider
                 {
-
+                    Id = CpuProvider.Id,
+                    Name = CpuProvider.Name,
+                    Producer = CpuProvider.Producer.Name,
+                    Cash = CpuProvider.Cash,
+                    Core = CpuProvider.Core,
+                    Threads = CpuProvider.Threads,
+                    Frequency = CpuProvider.Frequency,
+                    Image = CpuProvider.Image,
+                    CpuSocket = CpuProvider.CpuSocket,
+                    Video = CpuProvider.Video,
+                    Provider= CpuProvider.Provider.Name
                 };
             return DalCpuProvider;
         }
 
-        static public DalProducer 
+        static public DalProducer
             ProducerToDalProducer(Producer producer)
         {
             DalProducer dalProducer = new DalProducer
@@ -107,41 +127,41 @@ namespace DAL.Conversion
                 Name = producer.Name,
                 ItemFromProviders = producer.ItemFromProviders.Select
                 (x => ItemProviderToDalItemProvider(x)).ToList(),
-                ItemFromShops=producer.ItemFromShops.Select
+                ItemFromShops = producer.ItemFromShops.Select
                 (x => ItemShopToDalItemShop(x)).ToList(),
             };
             return dalProducer;
         }
 
-        private static DalItemFromProvider 
+        private static DalItemFromProvider
             ItemProviderToDalItemProvider(ItemFromProvider x)
         {
             DalItemFromProvider dalItemFromProvider = null;
-            if(x is CpuFromProvider)
+            if (x is CpuFromProvider)
             {
-                dalItemFromProvider = 
+                dalItemFromProvider =
                     CpuProviderToDalCpuProvider((x as CpuFromProvider));
             }
-            else if(x is MotherBoardFromProvider)
+            else if (x is MotherBoardFromProvider)
             {
-                dalItemFromProvider = 
+                dalItemFromProvider =
                     MBproviderToDalMBProvider((x as MotherBoardFromProvider));
             }
             return dalItemFromProvider;
         }
 
-        private static DalItemFromShop 
+        private static DalItemFromShop
             ItemShopToDalItemShop(ItemFromShop x)
         {
-            DalItemFromShop dalItemFromShop=null;
+            DalItemFromShop dalItemFromShop = null;
             if (x is CpuFromShop)
             {
-                dalItemFromShop = 
+                dalItemFromShop =
                     CpuToDalCpuShop((x as CpuFromShop));
             }
             else if (x is MotherBoardFromShop)
             {
-                dalItemFromShop = 
+                dalItemFromShop =
                     MBFromShopToDalMbFromShop((x as MotherBoardFromShop));
             }
             return dalItemFromShop;

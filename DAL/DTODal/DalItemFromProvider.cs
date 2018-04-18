@@ -13,7 +13,6 @@ namespace DAL.DTODal
         public string Producer { get; set; }
         public string Provider { get; set; }
         public decimal BuyPrice { get; set; }
-        public decimal SalaryPrice { get; set; }
         public byte[] Image { get; set; }
     }
 }
