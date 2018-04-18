@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DAL.DTODal;
 namespace DAL.Conversion
 {
-    public class DalConvertToDTO
+    public class EntityConvertToDTO
     {
         public static DalUser UserToDalUser(User user)
         {
@@ -166,5 +166,7 @@ namespace DAL.Conversion
             }
             return dalItemFromShop;
         }
+
+
     }
 }
