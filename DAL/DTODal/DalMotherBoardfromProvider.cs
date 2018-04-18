@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.DTODal
 {
-    public class DalMotherBoardfromProvider: DalItemFromProvider
+    public class DalMotherBoardFromProvider: DalItemFromProvider
     {
         public string MBSocket { get; set; }
         public string ChipSet { get; set; }

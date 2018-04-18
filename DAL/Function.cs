@@ -23,7 +23,7 @@ namespace DAL
                                            FirstOrDefault();
                 if(tmpuser != null)
                 {
-                    GetUser = DalConvertToDTO.UserToDTODalUser(tmpuser);
+                    GetUser = DalConvertToDTO.UserToDalUser(tmpuser);
                 }
               
             };
@@ -59,7 +59,7 @@ namespace DAL
             using (Shop shop = new Shop())
             {
                 var tmplist= shop.ItemFromShops.Where(x =>  x is CpuFromShop).Select(x=> (x as CpuFromShop )).ToList();
-                GetList = tmplist.Select(x => DalConvertToDTO.CpuToDTODalCpuShop(x)).ToList();
+                GetList = tmplist.Select(x => DalConvertToDTO.CpuToDalCpuShop(x)).ToList();
             };
 
             return GetList;

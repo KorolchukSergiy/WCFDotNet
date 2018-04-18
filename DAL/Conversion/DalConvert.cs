@@ -8,7 +8,7 @@ namespace DAL.Conversion
 {
     public class DalConvertToDTO
     {
-        public static DalUser UserToDTODalUser(User user)
+        public static DalUser UserToDalUser(User user)
         {
             DalUser GetUser = new DalUser()
             {
@@ -22,7 +22,8 @@ namespace DAL.Conversion
             return GetUser;
         }
 
-        public static DalCpuFromShop CpuToDTODalCpuShop(CpuFromShop Cpu)
+        public static DalCpuFromShop 
+            CpuToDalCpuShop(CpuFromShop Cpu)
         {
             DalCpuFromShop GetCpu = new DalCpuFromShop()
             {
@@ -49,14 +50,16 @@ namespace DAL.Conversion
                 Id = post.Id,
                 Name = post.Name,
                 Salary = post.Salary,
-                DalUsers = post.Users.Select(x => UserToDTODalUser(x)).ToList()
+                DalUsers = post.Users.Select(x => UserToDalUser(x)).ToList()
             };
             return GetBllPost;
         }
 
-        static public DalMotherBoardFromShop MBFromShopToDalMbfromShop(MotherBoardFromShop MBShop)
+        static public DalMotherBoardFromShop 
+            MBFromShopToDalMbFromShop(MotherBoardFromShop MBShop)
         {
-            DalMotherBoardFromShop DalMBFromShop = new DalMotherBoardFromShop
+            DalMotherBoardFromShop DalMBFromShop
+                = new DalMotherBoardFromShop
             {
                 Id = MBShop.Id,
                 Name = MBShop.Name,
@@ -73,15 +76,75 @@ namespace DAL.Conversion
             return DalMBFromShop;
         }
 
-        static public DalProducer ProducerToDalProducer(Producer producer)
+        public static DalMotherBoardFromProvider 
+            MBproviderToDalMBProvider(MotherBoardFromProvider MBProvider)
+        {
+            DalMotherBoardFromProvider DalMBProvider =
+                new DalMotherBoardFromProvider
+                {
+
+                };
+            return DalMBProvider;
+        }
+
+        public static DalCpuFromProvider 
+            CpuProviderToDalCpuProvider(CpuFromProvider MBProvider)
+        {
+            DalCpuFromProvider DalCpuProvider =
+                new DalCpuFromProvider
+                {
+
+                };
+            return DalCpuProvider;
+        }
+
+        static public DalProducer 
+            ProducerToDalProducer(Producer producer)
         {
             DalProducer dalProducer = new DalProducer
             {
-                Id=producer.Id,
-                Name=producer.Name,
-                //ItemFromProviders=producer.ItemFromProviders.Select
+                Id = producer.Id,
+                Name = producer.Name,
+                ItemFromProviders = producer.ItemFromProviders.Select
+                (x => ItemProviderToDalItemProvider(x)).ToList(),
+                ItemFromShops=producer.ItemFromShops.Select
+                (x => ItemShopToDalItemShop(x)).ToList(),
             };
             return dalProducer;
+        }
+
+        private static DalItemFromProvider 
+            ItemProviderToDalItemProvider(ItemFromProvider x)
+        {
+            DalItemFromProvider dalItemFromProvider = null;
+            if(x is CpuFromProvider)
+            {
+                dalItemFromProvider = 
+                    CpuProviderToDalCpuProvider((x as CpuFromProvider));
+            }
+            else if(x is MotherBoardFromProvider)
+            {
+                dalItemFromProvider = 
+                    MBproviderToDalMBProvider((x as MotherBoardFromProvider));
+            }
+            return dalItemFromProvider;
+        }
+
+        private static DalItemFromShop 
+            ItemShopToDalItemShop(ItemFromShop x)
+        {
+            DalItemFromShop dalItemFromShop=null;
+            if (x is CpuFromShop)
+            {
+                dalItemFromShop = 
+                    CpuToDalCpuShop((x as CpuFromShop));
+            }
+            else if (x is MotherBoardFromShop)
+            {
+                dalItemFromShop = 
+                    MBFromShopToDalMbFromShop((x as MotherBoardFromShop));
+            }
+            return dalItemFromShop;
         }
     }
 }
