@@ -59,7 +59,7 @@
     <Compile Include="Conversion\ConvertToEntity.cs" />
     <Compile Include="DTODal\DalCpuFromProvider.cs" />
     <Compile Include="DTODal\DalItemFromProvider.cs" />
-    <Compile Include="DTODal\DalMotherBoardfromProvider.cs" />
+    <Compile Include="DTODal\DalMotherBoardFromProvider.cs" />
     <Compile Include="DTODal\DalProducer.cs" />
     <Compile Include="EntityModel\BuyItem.cs" />
     <Compile Include="Conversion\ConvertToDal.cs" />

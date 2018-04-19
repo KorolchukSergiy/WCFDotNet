@@ -39,7 +39,6 @@ namespace DAL.Conversion
                 Threads = Cpu.Threads,
                 Frequency = Cpu.Frequency,
                 Image = Cpu.Image,
-                Socket = Cpu.CpuSocket,
                 Video = Cpu.Video
             };
             return GetCpu;
@@ -51,8 +50,7 @@ namespace DAL.Conversion
             {
                 Id = post.Id,
                 Name = post.Name,
-                Salary = post.Salary,
-                DalUsers = post.Users.Select(x => UserToDalUser(x)).ToList()
+                Salary = post.Salary
             };
             return GetBllPost;
         }
@@ -72,7 +70,7 @@ namespace DAL.Conversion
                     Producer = MBShop.Producer.Name,
                     Quantity = MBShop.Quantity,
                     SalaryPrice = MBShop.SalaryPrice,
-                    Socket = MBShop.MBSocket,
+                    MBSocket = MBShop.MBSocket,
                     USB = MBShop.USB,
                 };
             return DalMBFromShop;
@@ -126,11 +124,7 @@ namespace DAL.Conversion
             DalProducer dalProducer = new DalProducer
             {
                 Id = producer.Id,
-                Name = producer.Name,
-                ItemFromProviders = producer.ItemFromProviders.Select
-                     (x => ItemProviderToDalItemProvider(x)).ToList(),
-                ItemFromShops = producer.ItemFromShops.Select
-                      (x => ItemShopToDalItemShop(x)).ToList(),
+                Name = producer.Name
             };
             return dalProducer;
         }
@@ -169,19 +163,19 @@ namespace DAL.Conversion
             return dalItemFromShop;
         }
 
-        public static DalProvider ProviderToDalProvider(Provider provider)
+        public static DalProvider
+            ProviderToDalProvider(Provider provider)
         {
             DalProvider dalProvider = new DalProvider()
             {
                 Id = provider.Id,
                 Name = provider.Name,
-                DalItemFromProviders = provider.ItemFromProviders.Select
-                    (x => ItemProviderToDalItemProvider(x)).ToList()
             };
             return dalProvider;
         }
 
-        public static DalSaleItem SaleItemToDalSaleItem(SaleItem saleItem)
+        public static DalSaleItem
+            SaleItemToDalSaleItem(SaleItem saleItem)
         {
             DalSaleItem dalSaleItem = new DalSaleItem();
             Mapper.Initialize(Cfg => Cfg.CreateMap<SaleItem, DalSaleItem>()
@@ -193,7 +187,8 @@ namespace DAL.Conversion
             return dalSaleItem;
         }
 
-        public static DalBuyItem BuyItemToDalBuyItem(BuyItem buyItem)
+        public static DalBuyItem
+            BuyItemToDalBuyItem(BuyItem buyItem)
         {
             DalBuyItem dalBuyItem = new DalBuyItem();
             Mapper.Initialize(Cfg => Cfg.CreateMap<BuyItem, DalBuyItem>()
