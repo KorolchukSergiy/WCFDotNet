@@ -14,5 +14,6 @@ namespace DAL.DTODal
         public string Login { get; set; }
         public string Password { get; set; }
         public string Post { get; set; }
+        public bool Online { get; set; }
     }
 }

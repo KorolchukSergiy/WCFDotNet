@@ -19,7 +19,8 @@ namespace DAL.Conversion
                 Password = user.Password,
                 Name = user.Name,
                 Surname = user.Surname,
-                Post = user.Post.Name
+                Post = user.Post.Name,
+                Online=user.Online
             };
             return GetUser;
         }
