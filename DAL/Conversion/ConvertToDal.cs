@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.DTODal;
+using AutoMapper;
+
 namespace DAL.Conversion
 {
     public class EntityConvertToDTO
@@ -113,7 +115,7 @@ namespace DAL.Conversion
                     Image = CpuProvider.Image,
                     CpuSocket = CpuProvider.CpuSocket,
                     Video = CpuProvider.Video,
-                    Provider= CpuProvider.Provider.Name
+                    Provider = CpuProvider.Provider.Name
                 };
             return DalCpuProvider;
         }
@@ -126,9 +128,9 @@ namespace DAL.Conversion
                 Id = producer.Id,
                 Name = producer.Name,
                 ItemFromProviders = producer.ItemFromProviders.Select
-                (x => ItemProviderToDalItemProvider(x)).ToList(),
+                     (x => ItemProviderToDalItemProvider(x)).ToList(),
                 ItemFromShops = producer.ItemFromShops.Select
-                (x => ItemShopToDalItemShop(x)).ToList(),
+                      (x => ItemShopToDalItemShop(x)).ToList(),
             };
             return dalProducer;
         }
@@ -167,6 +169,42 @@ namespace DAL.Conversion
             return dalItemFromShop;
         }
 
+        public static DalProvider ProviderToDalProvider(Provider provider)
+        {
+            DalProvider dalProvider = new DalProvider()
+            {
+                Id = provider.Id,
+                Name = provider.Name,
+                DalItemFromProviders = provider.ItemFromProviders.Select
+                    (x => ItemProviderToDalItemProvider(x)).ToList()
+            };
+            return dalProvider;
+        }
 
+        public static DalSaleItem SaleItemToDalSaleItem(SaleItem saleItem)
+        {
+            DalSaleItem dalSaleItem = new DalSaleItem();
+            Mapper.Initialize(Cfg => Cfg.CreateMap<SaleItem, DalSaleItem>()
+                            .ForMember("ItemFromShop",opt=>opt.
+                                MapFrom(c=> ItemShopToDalItemShop(c.ItemFromShop)))
+                            .ForMember("Producer",opt=>opt
+                                .MapFrom(c=> ProducerToDalProducer(c.Producer))));
+            dalSaleItem = Mapper.Map<SaleItem, DalSaleItem>(saleItem);
+            return dalSaleItem;
+        }
+
+        public static DalBuyItem BuyItemToDalBuyItem(BuyItem buyItem)
+        {
+            DalBuyItem dalBuyItem = new DalBuyItem();
+            Mapper.Initialize(Cfg => Cfg.CreateMap<BuyItem, DalBuyItem>()
+                           .ForMember("ItemFromProvider", opt => opt.
+                               MapFrom(c => ItemProviderToDalItemProvider(c.ItemFromProvider)))
+                           .ForMember("Producer",opt=>opt.
+                               MapFrom(c=>ProducerToDalProducer(c.Producer)))
+                           .ForMember("DalProvider",opt=>opt.
+                               MapFrom(c=>ProviderToDalProvider(c.Provider))));
+            dalBuyItem = Mapper.Map<BuyItem, DalBuyItem>(buyItem);
+            return dalBuyItem;
+        }
     }
 }

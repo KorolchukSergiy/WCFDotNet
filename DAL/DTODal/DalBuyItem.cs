@@ -10,7 +10,7 @@ namespace DAL.DTODal
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Producer { get; set; }
+        public DalProducer Producer { get; set; }
         public int Quantity { get; set; }
         public DateTime TimeBuy { get; set; }
         public DalItemFromProvider DalItemFromProvider { get; set; }
