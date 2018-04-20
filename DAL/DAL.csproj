@@ -58,7 +58,6 @@
     <Compile Include="DTODal\DalMotherBoardfromProvider.cs" />
     <Compile Include="DTODal\DalProducer.cs" />
     <Compile Include="EntityModel\BuyItem.cs" />
-    <Compile Include="Conversion\DalConvert.cs" />
     <Compile Include="DTODal\DalBuyItem.cs" />
     <Compile Include="DTODal\DalCpuFromShop.cs" />
     <Compile Include="DTODal\DalItemFromShop.cs" />
@@ -87,6 +86,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Conversion\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
