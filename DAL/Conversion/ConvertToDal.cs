@@ -180,10 +180,8 @@ namespace DAL.Conversion
         {
             DalSaleItem dalSaleItem = new DalSaleItem();
             Mapper.Initialize(Cfg => Cfg.CreateMap<SaleItem, DalSaleItem>()
-                            .ForMember("ItemFromShop",opt=>opt.
-                                MapFrom(c=> ItemShopToDalItemShop(c.ItemFromShop)))
-                            .ForMember("Producer",opt=>opt
-                                .MapFrom(c=> ProducerToDalProducer(c.Producer))));
+                            .ForMember("ItemFromShop", opt => opt.
+                                 MapFrom(c => ItemShopToDalItemShop(c.ItemFromShop))));
             dalSaleItem = Mapper.Map<SaleItem, DalSaleItem>(saleItem);
             return dalSaleItem;
         }
@@ -194,11 +192,7 @@ namespace DAL.Conversion
             DalBuyItem dalBuyItem = new DalBuyItem();
             Mapper.Initialize(Cfg => Cfg.CreateMap<BuyItem, DalBuyItem>()
                            .ForMember("ItemFromProvider", opt => opt.
-                               MapFrom(c => ItemProviderToDalItemProvider(c.ItemFromProvider)))
-                           .ForMember("Producer",opt=>opt.
-                               MapFrom(c=>ProducerToDalProducer(c.Producer)))
-                           .ForMember("DalProvider",opt=>opt.
-                               MapFrom(c=>ProviderToDalProvider(c.Provider))));
+                               MapFrom(c => ItemProviderToDalItemProvider(c.ItemFromProvider))));
             dalBuyItem = Mapper.Map<BuyItem, DalBuyItem>(buyItem);
             return dalBuyItem;
         }

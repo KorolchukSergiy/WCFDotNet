@@ -9,11 +9,8 @@ namespace DAL.DTODal
     public class DalBuyItem
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public DalProducer Producer { get; set; }
         public int Quantity { get; set; }
         public DateTime TimeBuy { get; set; }
         public DalItemFromProvider DalItemFromProvider { get; set; }
-        public DalProvider DalProvider { get; set; }
     }
 }

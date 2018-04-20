@@ -17,7 +17,7 @@
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
-        public virtual DbSet<ItemFromProvider> Items { get; set; }
+        public virtual DbSet<ItemFromProvider> ItemFromProviders { get; set; }
         public virtual DbSet<ItemFromShop> ItemFromShops { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<Producer> Producers { get; set; }
