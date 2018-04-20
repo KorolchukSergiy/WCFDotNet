@@ -10,6 +10,5 @@ namespace DAL.DTODal
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<DalItemFromProvider> DalItemFromProviders { get; set; }
     }
 }
