@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ShopServer" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:54871/ShopServer.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:54871/ShopServer.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:54871/ShopServer.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCFDotNet.DataContracts" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IShopServer_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="IShopServer_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IShopServer_GetDCItemFromShop_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDCItemFromShop" />
+  </wsdl:message>
+  <wsdl:message name="IShopServer_GetDCItemFromShop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDCItemFromShopResponse" />
+  </wsdl:message>
+  <wsdl:message name="IShopServer_UserOff_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserOff" />
+  </wsdl:message>
+  <wsdl:message name="IShopServer_UserOff_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserOffResponse" />
+  </wsdl:message>
+  <wsdl:message name="IShopServer_UserOn_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserOn" />
+  </wsdl:message>
+  <wsdl:message name="IShopServer_UserOn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserOnResponse" />
+  </wsdl:message>
+  <wsdl:message name="IShopServer_SaleItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaleItems" />
+  </wsdl:message>
+  <wsdl:message name="IShopServer_SaleItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaleItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IShopServer_GetItemsFromProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsFromProvider" />
+  </wsdl:message>
+  <wsdl:message name="IShopServer_GetItemsFromProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsFromProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IShopServer_BuyItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuyItems" />
+  </wsdl:message>
+  <wsdl:message name="IShopServer_BuyItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuyItemsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IShopServer">
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IShopServer/GetUser" message="tns:IShopServer_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IShopServer/GetUserResponse" message="tns:IShopServer_GetUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDCItemFromShop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IShopServer/GetDCItemFromShop" message="tns:IShopServer_GetDCItemFromShop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IShopServer/GetDCItemFromShopResponse" message="tns:IShopServer_GetDCItemFromShop_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserOff">
+      <wsdl:input wsaw:Action="http://tempuri.org/IShopServer/UserOff" message="tns:IShopServer_UserOff_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IShopServer/UserOffResponse" message="tns:IShopServer_UserOff_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserOn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IShopServer/UserOn" message="tns:IShopServer_UserOn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IShopServer/UserOnResponse" message="tns:IShopServer_UserOn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaleItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IShopServer/SaleItems" message="tns:IShopServer_SaleItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IShopServer/SaleItemsResponse" message="tns:IShopServer_SaleItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemsFromProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IShopServer/GetItemsFromProvider" message="tns:IShopServer_GetItemsFromProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IShopServer/GetItemsFromProviderResponse" message="tns:IShopServer_GetItemsFromProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BuyItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IShopServer/BuyItems" message="tns:IShopServer_BuyItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IShopServer/BuyItemsResponse" message="tns:IShopServer_BuyItems_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IShopServer" type="tns:IShopServer">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/IShopServer/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDCItemFromShop">
+      <soap:operation soapAction="http://tempuri.org/IShopServer/GetDCItemFromShop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserOff">
+      <soap:operation soapAction="http://tempuri.org/IShopServer/UserOff" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserOn">
+      <soap:operation soapAction="http://tempuri.org/IShopServer/UserOn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaleItems">
+      <soap:operation soapAction="http://tempuri.org/IShopServer/SaleItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemsFromProvider">
+      <soap:operation soapAction="http://tempuri.org/IShopServer/GetItemsFromProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuyItems">
+      <soap:operation soapAction="http://tempuri.org/IShopServer/BuyItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ShopServer">
+    <wsdl:port name="BasicHttpBinding_IShopServer" binding="tns:BasicHttpBinding_IShopServer">
+      <soap:address location="http://localhost:54871/ShopServer.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

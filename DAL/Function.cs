@@ -6,63 +6,131 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
 using System.Drawing;
-using DAL.DTODal;
-using DAL.Conversion;
 
 namespace DAL
 {
     public class Function
     {
-        public DalUser GetUser(string login, string password)
+        private Shop shop = new Shop();
+
+        public User GetUser(string login, string password)
         {
-            DalUser GetUser = null;
-            using (Shop shop = new Shop())
-            {
-                User tmpuser = shop.Users.Where(x => x.Login.Equals(login)
-                                             && x.Password.Equals(password)).
-                                           FirstOrDefault();
-                if(tmpuser != null)
-                {
-                    GetUser = EntityConvertToDTO.UserToDalUser(tmpuser);
-                }
-              
-            };
+            User GetUser = shop.Users.Where(x => x.Login.Equals(login)
+                                            && x.Password.Equals(password)).FirstOrDefault();
             return GetUser;
         }
 
         public List<Post> GetListPost()
         {
             List<Post> GetListPost = null;
-            using (Shop shop = new Shop())
-            {
-                GetListPost = shop.Posts.Local.ToList();
-            };
+            GetListPost = shop.Posts.Local.ToList();
             return GetListPost;
 
         }
 
-        public DalPost GetPostUser(DalUser user)
+        public Post GetPostUser(int UserId)
         {
-            DalPost UserLoginPost = null;
-
-            using (Shop shop = new Shop())
-            {
-                User tmpUser = shop.Users.Where(x => x.Id == user.Id).First();
-                UserLoginPost = EntityConvertToDTO.PostToDalPost(tmpUser.Post);
-            };
+            Post UserLoginPost = null;
+            User tmpUser = shop.Users.Where(x => x.Id == UserId).First();
+            UserLoginPost = shop.Posts.First(x => x.Id == tmpUser.Post.Id);
             return UserLoginPost;
         }
 
-        public List<DalCpuFromShop> GetListCpu()
+        public List<ItemFromShop> GetItemsFromShop()
         {
-            var GetList = new List<DalCpuFromShop>();
-            using (Shop shop = new Shop())
+            return shop.ItemFromShops.ToList();
+        }
+
+        public void UserOff(int Id)
+        {
+            shop.Users.First(x => x.Id == Id).Online = false;
+        }
+
+        public void UserOn(int Id)
+        {
+            shop.Users.First(x => x.Id == Id).Online = true;
+        }
+
+        public void SaleItem(List<SaleItem> SaleItems)
+        {
+            foreach (var item in SaleItems)
             {
-                var tmplist= shop.ItemFromShops.Where(x =>  x is CpuFromShop).Select(x=> (x as CpuFromShop )).ToList();
-                GetList = tmplist.Select(x => EntityConvertToDTO.CpuToDalCpuShop(x)).ToList();
+                item.ItemFromShop = shop.ItemFromShops.First(x => x.Id == item.ItemFromShop.Id);
+                item.ItemFromShop.Quantity -= item.Quantity;
+            }
+            shop.SaleItems.AddRange(SaleItems);
+            shop.SaveChanges();
+        }
+
+        public List<ItemFromProvider> GetItemFromProviders()
+        {
+            return shop.ItemFromProviders.ToList();
+        }
+
+        public void BuyItems(List<BuyItem> BuyItems)
+        {
+            foreach (var item in BuyItems)
+            {
+                item.ItemFromProvider = shop.ItemFromProviders.First(x => x.Id == item.ItemFromProvider.Id);
+
+                ItemFromShop tmpItem = shop.ItemFromShops.FirstOrDefault
+                                        (x => x.Name == item.ItemFromProvider.Name &&
+                                        x.Producer.Id == item.ItemFromProvider.Producer.Id);
+
+                if (tmpItem != null)
+                {
+                    tmpItem.Quantity += item.Quantity;
+                }
+                else
+                {
+                    if(item.ItemFromProvider is CpuFromProvider)
+                    {
+                        tmpItem = CreateCpuShop(item.ItemFromProvider as CpuFromProvider);
+                        tmpItem.Quantity = item.Quantity;
+                    }
+                    else if(item.ItemFromProvider is MotherBoardFromProvider)
+                    {
+                        tmpItem = CreateMotherBoardShop(item.ItemFromProvider as MotherBoardFromProvider);
+                        tmpItem.Quantity = item.Quantity;
+                    }
+                    shop.ItemFromShops.Add(tmpItem);
+                }
+            }
+            shop.SaveChanges();
+        }
+
+        public ItemFromShop CreateCpuShop(CpuFromProvider Item)
+        {
+            return new CpuFromShop
+            {
+                Name = Item.Name,
+                Cash = Item.Cash,
+                Frequency= Item.Frequency,
+                Core= Item.Core,
+                CpuSocket= Item.CpuSocket,
+                Threads= Item.Threads,
+                Image= Item.Image,
+                SalaryPrice= Item.BuyPrice*1.5m,
+                Video= Item.Video,
+                Producer=shop.Producers.First(x=>x.Id== Item.Producer.Id)
+            };
+        }
+
+        public ItemFromShop CreateMotherBoardShop(MotherBoardFromProvider Item)
+        {
+            return new MotherBoardFromShop
+            {
+                Name= Item.Name,
+                Image= Item.Image,
+                USB= Item.USB,
+                ChipSet= Item.ChipSet,
+                PciE= Item.PciE,
+                MBSocket= Item.MBSocket,
+                RAM= Item.RAM,
+                SalaryPrice= Item.BuyPrice*1.5m,
+                Producer= shop.Producers.First(x => x.Id == Item.Producer.Id)
             };
 
-            return GetList;
         }
     }
 }

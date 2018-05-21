@@ -12,6 +12,7 @@
             Database.SetInitializer<Shop>(new SetInitializer<Shop>());
         }
 
+      
         // Добавьте DbSet для каждого типа сущности, который требуется включить в модель. Дополнительные сведения 
         // о настройке и использовании модели Code First см. в статье http://go.microsoft.com/fwlink/?LinkId=390109.
 
@@ -24,6 +25,14 @@
         public virtual DbSet<Provider> Providers { get; set; }
         public virtual DbSet<SaleItem> SaleItems { get; set; }
         public virtual DbSet<BuyItem> BuyItems { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>().HasOptional(x => x.Provider).WithOptionalPrincipal();
+
+            modelBuilder.Entity<Provider>().HasOptional(x => x.User).WithOptionalPrincipal();
+        }
     }
 
 }

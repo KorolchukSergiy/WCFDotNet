@@ -56,23 +56,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conversion\ConvertToEntity.cs" />
-    <Compile Include="DTODal\DalCpuFromProvider.cs" />
-    <Compile Include="DTODal\DalItemFromProvider.cs" />
-    <Compile Include="DTODal\DalMotherBoardFromProvider.cs" />
-    <Compile Include="DTODal\DalProducer.cs" />
     <Compile Include="EntityModel\BuyItem.cs" />
-    <Compile Include="Conversion\ConvertToDal.cs" />
-    <Compile Include="DTODal\DalBuyItem.cs" />
-    <Compile Include="DTODal\DalCpuFromShop.cs" />
-    <Compile Include="DTODal\DalItemFromShop.cs" />
-    <Compile Include="DTODal\DalMotherBoardFromShop.cs" />
-    <Compile Include="DTODal\DalPost.cs" />
-    <Compile Include="DTODal\DalSaleItem.cs" />
-    <Compile Include="DTODal\DalUser.cs" />
     <Compile Include="EntityModel\CpuFromShop.cs" />
     <Compile Include="EntityModel\CpuFromProvider.cs" />
-    <Compile Include="DTODal\DalProvider.cs" />
     <Compile Include="EntityModel\ItemFromProvider.cs" />
     <Compile Include="EntityModel\Log.cs" />
     <Compile Include="EntityModel\MotherBoardFromProvider.cs" />

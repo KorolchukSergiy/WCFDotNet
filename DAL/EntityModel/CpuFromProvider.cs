@@ -1,6 +1,6 @@
 ﻿namespace DAL
 {
-    public class CpuFromProvider:ItemFromProvider
+    public class CpuFromProvider : ItemFromProvider
     {
         public string CpuSocket { get; set; }
         public int Frequency { get; set; }

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCFDotNet.DataContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFDotNet.DataContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="DCUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Online" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Post" nillable="true" type="tns:DCPost" />
+      <xs:element minOccurs="0" name="Provider" nillable="true" type="tns:DCProvider" />
+      <xs:element minOccurs="0" name="Surname" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DCUser" nillable="true" type="tns:DCUser" />
+  <xs:complexType name="DCPost">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Salary" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfDCUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DCPost" nillable="true" type="tns:DCPost" />
+  <xs:complexType name="ArrayOfDCUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DCUser" nillable="true" type="tns:DCUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDCUser" nillable="true" type="tns:ArrayOfDCUser" />
+  <xs:complexType name="DCProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ItemFromProviders" nillable="true" type="tns:ArrayOfDCItemFromProvider" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:DCUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DCProvider" nillable="true" type="tns:DCProvider" />
+  <xs:complexType name="ArrayOfDCItemFromProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DCItemFromProvider" nillable="true" type="tns:DCItemFromProvider" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDCItemFromProvider" nillable="true" type="tns:ArrayOfDCItemFromProvider" />
+  <xs:complexType name="DCItemFromProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BuyPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Image" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Producer" nillable="true" type="tns:DCProducer" />
+      <xs:element minOccurs="0" name="Provider" nillable="true" type="tns:DCProvider" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DCItemFromProvider" nillable="true" type="tns:DCItemFromProvider" />
+  <xs:complexType name="DCProducer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DCProducer" nillable="true" type="tns:DCProducer" />
+  <xs:complexType name="DCBuyItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ItemFromProvider" nillable="true" type="tns:DCItemFromProvider" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="TimeBuy" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DCBuyItem" nillable="true" type="tns:DCBuyItem" />
+  <xs:complexType name="DCCpuFromProvider">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DCItemFromProvider">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Cash" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Core" type="xs:int" />
+          <xs:element minOccurs="0" name="CpuSocket" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Frequency" type="xs:int" />
+          <xs:element minOccurs="0" name="Threads" type="xs:int" />
+          <xs:element minOccurs="0" name="Video" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DCCpuFromProvider" nillable="true" type="tns:DCCpuFromProvider" />
+  <xs:complexType name="DCMBFromProvider">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DCItemFromProvider">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChipSet" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MBSocket" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PciE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RAM" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="USB" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DCMBFromProvider" nillable="true" type="tns:DCMBFromProvider" />
+  <xs:complexType name="ArrayOfDCItemFromShop">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DCItemFromShop" nillable="true" type="tns:DCItemFromShop" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDCItemFromShop" nillable="true" type="tns:ArrayOfDCItemFromShop" />
+  <xs:complexType name="DCItemFromShop">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Image" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Producer" nillable="true" type="tns:DCProducer" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="SalaryPrice" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DCItemFromShop" nillable="true" type="tns:DCItemFromShop" />
+  <xs:complexType name="DCMBFromShop">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DCItemFromShop">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChipSet" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MBSocket" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PciE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RAM" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="USB" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DCMBFromShop" nillable="true" type="tns:DCMBFromShop" />
+  <xs:complexType name="DCCpuFromShop">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DCItemFromShop">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Cash" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Core" type="xs:int" />
+          <xs:element minOccurs="0" name="CpuSocket" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Frequency" type="xs:int" />
+          <xs:element minOccurs="0" name="Threads" type="xs:int" />
+          <xs:element minOccurs="0" name="Video" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DCCpuFromShop" nillable="true" type="tns:DCCpuFromShop" />
+  <xs:complexType name="DCSaleItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ItemFromShop" nillable="true" type="tns:DCItemFromShop" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="SaleTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DCSaleItem" nillable="true" type="tns:DCSaleItem" />
+  <xs:complexType name="ArrayOfDCSaleItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DCSaleItem" nillable="true" type="tns:DCSaleItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDCSaleItem" nillable="true" type="tns:ArrayOfDCSaleItem" />
+  <xs:complexType name="ArrayOfDCBuyItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DCBuyItem" nillable="true" type="tns:DCBuyItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDCBuyItem" nillable="true" type="tns:ArrayOfDCBuyItem" />
+</xs:schema>

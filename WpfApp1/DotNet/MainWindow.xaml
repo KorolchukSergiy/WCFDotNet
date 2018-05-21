@@ -1,0 +1,84 @@
+﻿<Controls:MetroWindow x:Class="DotNet.MainWindow"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                   
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DotNet"
+        
+        mc:Ignorable="d"
+        Title="Login" Height="500" Width="400" KeyDown="MetroWindow_KeyDown">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Backgraund.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Button  Margin="5" Grid.Row="3" Grid.Column="1" Content="Exit"
+                 Click="Exit_Click" Foreground="GreenYellow" x:Name="ExitButton">
+            <Button.Background>
+                <SolidColorBrush Color="#CCB4B4B4"/>
+            </Button.Background>
+        </Button>
+        <Button  Margin="5" Grid.Row="3" Grid.Column="2" Content="LogIn"
+                 Click="LogIn_Click" Foreground="GreenYellow" x:Name="LoginButton">
+            <Button.Background>
+                <SolidColorBrush Color="#CCB4B4B4"/>
+            </Button.Background>
+        </Button>
+
+        <Label Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+               Foreground="GreenYellow" FontSize="16">LogIn</Label>
+        <Label Grid.Column="1" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+               Foreground="GreenYellow"  FontSize="16">Password</Label>
+
+        <TextBox Grid.Column="2" Grid.Row="1" Margin="5" x:Name="LogInBox"
+                 VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+               Foreground="GreenYellow">
+            <TextBox.Background>
+                <SolidColorBrush Color="#CCB4B4B4"/>
+            </TextBox.Background>
+        </TextBox>
+
+        <PasswordBox Grid.Column="2" Grid.Row="2" Margin="5" x:Name="passwordBox"
+                     VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+               Foreground="GreenYellow">
+            <PasswordBox.Background>
+                <SolidColorBrush Color="#CCB4B4B4"/>
+            </PasswordBox.Background>
+        </PasswordBox>
+
+        <Label Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Center" PreviewMouseDown="RegNewProvider_Click"
+               x:Name="RegNewProvider">Registration new provider
+            <Label.Style>
+                <Style>
+                    <Setter Property="Label.Foreground" Value="GreenYellow"/>
+                    <Style.Triggers>
+                        <Trigger Property="Label.IsMouseOver" Value="True">
+                            <Setter Property="Label.Foreground" Value="Blue" />
+                        </Trigger>
+                    </Style.Triggers>
+
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <Controls:ProgressRing Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" x:Name="Progress" >
+        </Controls:ProgressRing>
+    </Grid>
+</Controls:MetroWindow>

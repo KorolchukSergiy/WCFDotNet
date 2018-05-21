@@ -12,5 +12,6 @@ namespace DAL
         public virtual Post Post { get; set; }
         public bool Online { get; set; }
         public virtual ICollection<Log> Logs { get; set; }
+        public virtual Provider Provider { get; set; }
     }
 }
