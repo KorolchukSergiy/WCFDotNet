@@ -114,7 +114,9 @@ namespace DotNet
                                       component.IndexOf(x.ToString()) >= 0).ToList();
             GridItemShop.ItemsSource = BindingItemShop;
         }
-
+        /// <summary>
+        /// Set CheckBox in all treeview for MotherBoard TabItem
+        /// </summary>
         private void ADDBoxMotherB()
         {
             AddBoxInMotherBProducerTree();
@@ -123,7 +125,9 @@ namespace DotNet
             AddBoxInMotherBTypeRamTree();
             AddBoxInMotherBProvider();
         }
-
+        /// <summary>
+        /// Set CheckBox in TreeItem MotherBoard Producer
+        /// </summary>
         private void AddBoxInMotherBProducerTree()
         {
             MotherBProducerTree.Items.Clear();
@@ -141,7 +145,9 @@ namespace DotNet
                 MotherBProducerTree.Items.Add(TmpCheckBox);
             }
         }
-
+        /// <summary>
+        /// Set CheckBox in TreeItem MotherBoard Socket
+        /// </summary>
         private void AddBoxInMotherBSocketTree()
         {
             MotherBSocketTree.Items.Clear();
@@ -159,7 +165,9 @@ namespace DotNet
                 MotherBSocketTree.Items.Add(TmpCheckBox);
             }
         }
-
+        /// <summary>
+        /// Set CheckBox in TreeItem MotherBoard ChipSet
+        /// </summary>
         private void AddBoxInMotherBChipSetTree()
         {
             MotherBChipSetTree.Items.Clear();
@@ -177,7 +185,9 @@ namespace DotNet
                 MotherBChipSetTree.Items.Add(TmpCheckBox);
             }
         }
-
+        /// <summary>
+        /// Set CheckBox in TreeItem MotherBoard TypeRam
+        /// </summary>
         private void AddBoxInMotherBTypeRamTree()
         {
             MotherBTypeRamTree.Items.Clear();
@@ -195,7 +205,9 @@ namespace DotNet
                 MotherBTypeRamTree.Items.Add(TmpCheckBox);
             }
         }
-
+        /// <summary>
+        /// Set CheckBox in TreeItem MotherBoard Provider
+        /// </summary>
         private void AddBoxInMotherBProvider()
         {
             MotherBProvider.Items.Clear();
@@ -213,7 +225,11 @@ namespace DotNet
                 MotherBProvider.Items.Add(TmpCheckBox);
             }
         }
-
+        /// <summary>
+        /// Checked CheckBox for MotherBoard, display MotherBoard depending on checked CheckBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CheckmotherBoard(object sender, RoutedEventArgs e)
         {
 
@@ -233,7 +249,14 @@ namespace DotNet
                                       && provider.IndexOf(x.Provider.Name) >= 0).ToList();
             MotherBDataGrid.ItemsSource = BindingMB;
         }
-
+        /// <summary>
+        /// collect information about the selected CheckBox MotherBoard
+        /// </summary>
+        /// <param name="producer"></param>
+        /// <param name="chipset"></param>
+        /// <param name="socket"></param>
+        /// <param name="ram"></param>
+        /// <param name="provider"></param>
         private void StringToCheckMotherBoard
           (ref string producer, ref string chipset, ref string socket, ref string ram, ref string provider)
         {
@@ -276,7 +299,9 @@ namespace DotNet
                 }
             }
         }
-
+        /// <summary>
+        /// Set CheckBox in all treeview for Cpu TabItem
+        /// </summary>
         private void ADDBoxCpu()
         {
             AddBoxInCpuProducerTree();
@@ -285,7 +310,9 @@ namespace DotNet
             AddBoxInCpuVideoTree();
             AddBoxInCpuProvider();
         }
-
+        /// <summary>
+        /// Set CheckBox in TreeItem Cpu Provider
+        /// </summary>
         private void AddBoxInCpuProvider()
         {
             CpuProvider.Items.Clear();
@@ -303,7 +330,9 @@ namespace DotNet
                 CpuProvider.Items.Add(TmpCheckBox);
             }
         }
-
+        /// <summary>
+        /// Set CheckBox in TreeItem Cpu Video
+        /// </summary>
         private void AddBoxInCpuVideoTree()
         {
             CpuVideoTree.Items.Clear();
@@ -321,7 +350,9 @@ namespace DotNet
                 CpuVideoTree.Items.Add(TmpCheckBox);
             }
         }
-
+        /// <summary>
+        /// Set CheckBox in TreeItem Cpu Socket
+        /// </summary>
         private void AddBoxInCpuSocketTree()
         {
             CpuSocketTree.Items.Clear();
@@ -339,7 +370,9 @@ namespace DotNet
                 CpuSocketTree.Items.Add(TmpCheckBox);
             }
         }
-
+        /// <summary>
+        /// Set CheckBox in TreeItem Cpu Core
+        /// </summary>
         private void AddBoxInCpuCoreTree()
         {
             CpuCoreTree.Items.Clear();
@@ -357,7 +390,9 @@ namespace DotNet
                 CpuCoreTree.Items.Add(TmpCheckBox);
             }
         }
-
+        /// <summary>
+        /// Set CheckBox in TreeItem Cpu Producer
+        /// </summary>
         private void AddBoxInCpuProducerTree()
         {
             CpuProducerTree.Items.Clear();
@@ -375,7 +410,11 @@ namespace DotNet
                 CpuProducerTree.Items.Add(TmpCheckBox);
             }
         }
-
+        /// <summary>
+        /// Checked CheckBox for Cpu, display Cpu depending on checked CheckBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CheckCpu(object sender, RoutedEventArgs e)
         {
 
@@ -394,7 +433,14 @@ namespace DotNet
                                       && provider.IndexOf(x.Provider.Name) >= 0).ToList();
             CpuDataGrid.ItemsSource = BindingCpu;
         }
-
+        /// <summary>
+        /// collect information about the selected CheckBox Cpu
+        /// </summary>
+        /// <param name="producer"></param>
+        /// <param name="core"></param>
+        /// <param name="socket"></param>
+        /// <param name="video"></param>
+        /// <param name="provider"></param>
         private void StringToCheckCPU
            (ref string producer, ref string core, ref string socket, ref string video, ref string provider)
         {
@@ -438,17 +484,28 @@ namespace DotNet
                 }
             }
         }
-
+        /// <summary>
+        /// Set authorized User
+        /// </summary>
+        /// <param name="user"></param>
         public void SetUser(User user)
         {
             User = user;
         }
-
+        /// <summary>
+        /// refresh all TabItems and TreeView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Refresh(object sender, RoutedEventArgs e)
         {
             Load(null,null);
         }
-
+        /// <summary>
+        /// update data when changing TabItem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Find_Click(object sender, RoutedEventArgs e)
         {
             if (MyTabContol.SelectedIndex == 0)
@@ -474,7 +531,11 @@ namespace DotNet
             }
 
         }
-
+        /// <summary>
+        /// adding an item to the price list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddPriceList(object sender, RoutedEventArgs e)
         {
              DALFunction dALFunction = new DALFunction();     
@@ -513,7 +574,11 @@ namespace DotNet
             BuyDataGrid.ItemsSource = null;
             BuyDataGrid.ItemsSource = ListBuyItem;
         }
-
+        /// <summary>
+        /// Delete Item with salery list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
             if (BuyDataGrid.SelectedItem != null)
@@ -525,7 +590,11 @@ namespace DotNet
             BuyDataGrid.ItemsSource = null;
             BuyDataGrid.ItemsSource = ListBuyItem;
         }
-
+        /// <summary>
+        /// printed a check and Buy items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Print(object sender, RoutedEventArgs e)
         {
             string Bill = string.Empty;
@@ -555,7 +624,11 @@ namespace DotNet
 
             }
         }
-
+        /// <summary>
+        /// Delete Item with salery list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClearBuyList(object sender, RoutedEventArgs e)
         {
             ListBuyItem.Clear();

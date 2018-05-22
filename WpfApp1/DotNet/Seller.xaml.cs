@@ -320,7 +320,7 @@ namespace DotNet
             }
         }
         /// <summary>
-        /// Checked CheckBox for Cpu, display MotherBoard depending on checked CheckBox
+        /// Checked CheckBox for MotherBoard, display MotherBoard depending on checked CheckBox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
