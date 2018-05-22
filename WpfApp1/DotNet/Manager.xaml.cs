@@ -75,6 +75,7 @@ namespace DotNet
             DalFunc.UserOn(User.Id);
             AddBoxShopItemTree();
         }
+        
         /// <summary>
         /// Set treeview for Shop Item
         /// </summary>
@@ -95,6 +96,7 @@ namespace DotNet
                 Component.Items.Add(TmpCheckBox);
             }
         }
+       
         /// <summary>
         /// Checked CheckBox for ShopItem, display ShopItem depending on checked CheckBox
         /// </summary>
@@ -114,6 +116,7 @@ namespace DotNet
                                       component.IndexOf(x.ToString()) >= 0).ToList();
             GridItemShop.ItemsSource = BindingItemShop;
         }
+      
         /// <summary>
         /// Set CheckBox in all treeview for MotherBoard TabItem
         /// </summary>
@@ -125,6 +128,7 @@ namespace DotNet
             AddBoxInMotherBTypeRamTree();
             AddBoxInMotherBProvider();
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem MotherBoard Producer
         /// </summary>
@@ -145,6 +149,7 @@ namespace DotNet
                 MotherBProducerTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem MotherBoard Socket
         /// </summary>
@@ -165,6 +170,7 @@ namespace DotNet
                 MotherBSocketTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem MotherBoard ChipSet
         /// </summary>
@@ -185,6 +191,7 @@ namespace DotNet
                 MotherBChipSetTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem MotherBoard TypeRam
         /// </summary>
@@ -205,6 +212,7 @@ namespace DotNet
                 MotherBTypeRamTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem MotherBoard Provider
         /// </summary>
@@ -225,6 +233,7 @@ namespace DotNet
                 MotherBProvider.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Checked CheckBox for MotherBoard, display MotherBoard depending on checked CheckBox
         /// </summary>
@@ -249,6 +258,7 @@ namespace DotNet
                                       && provider.IndexOf(x.Provider.Name) >= 0).ToList();
             MotherBDataGrid.ItemsSource = BindingMB;
         }
+        
         /// <summary>
         /// collect information about the selected CheckBox MotherBoard
         /// </summary>
@@ -299,6 +309,7 @@ namespace DotNet
                 }
             }
         }
+        
         /// <summary>
         /// Set CheckBox in all treeview for Cpu TabItem
         /// </summary>
@@ -310,6 +321,7 @@ namespace DotNet
             AddBoxInCpuVideoTree();
             AddBoxInCpuProvider();
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem Cpu Provider
         /// </summary>
@@ -330,6 +342,7 @@ namespace DotNet
                 CpuProvider.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem Cpu Video
         /// </summary>
@@ -350,6 +363,7 @@ namespace DotNet
                 CpuVideoTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem Cpu Socket
         /// </summary>
@@ -370,6 +384,7 @@ namespace DotNet
                 CpuSocketTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem Cpu Core
         /// </summary>
@@ -390,6 +405,7 @@ namespace DotNet
                 CpuCoreTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem Cpu Producer
         /// </summary>
@@ -410,6 +426,7 @@ namespace DotNet
                 CpuProducerTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Checked CheckBox for Cpu, display Cpu depending on checked CheckBox
         /// </summary>
@@ -433,6 +450,7 @@ namespace DotNet
                                       && provider.IndexOf(x.Provider.Name) >= 0).ToList();
             CpuDataGrid.ItemsSource = BindingCpu;
         }
+        
         /// <summary>
         /// collect information about the selected CheckBox Cpu
         /// </summary>
@@ -484,6 +502,7 @@ namespace DotNet
                 }
             }
         }
+        
         /// <summary>
         /// Set authorized User
         /// </summary>
@@ -492,6 +511,7 @@ namespace DotNet
         {
             User = user;
         }
+        
         /// <summary>
         /// refresh all TabItems and TreeView
         /// </summary>
@@ -501,6 +521,7 @@ namespace DotNet
         {
             Load(null,null);
         }
+        
         /// <summary>
         /// update data when changing TabItem
         /// </summary>
@@ -531,6 +552,7 @@ namespace DotNet
             }
 
         }
+        
         /// <summary>
         /// adding an item to the price list
         /// </summary>
@@ -574,6 +596,7 @@ namespace DotNet
             BuyDataGrid.ItemsSource = null;
             BuyDataGrid.ItemsSource = ListBuyItem;
         }
+        
         /// <summary>
         /// Delete Item with salery list
         /// </summary>
@@ -590,6 +613,7 @@ namespace DotNet
             BuyDataGrid.ItemsSource = null;
             BuyDataGrid.ItemsSource = ListBuyItem;
         }
+        
         /// <summary>
         /// printed a check and Buy items
         /// </summary>
@@ -624,6 +648,7 @@ namespace DotNet
 
             }
         }
+        
         /// <summary>
         /// Delete Item with salery list
         /// </summary>
