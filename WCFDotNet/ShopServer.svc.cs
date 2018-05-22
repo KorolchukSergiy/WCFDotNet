@@ -16,6 +16,10 @@ namespace WCFDotNet
     {
         BllLogic bllLogic = new BllLogic();
 
+        /// <summary>
+        /// returns all ItemsFromShop that are in the database
+        /// </summary>
+        /// <returns></returns>
         public List<DCItemFromShop> GetDCItemFromShop()
         {
             List<DCItemFromShop> GetListItems = new List<DCItemFromShop>();
@@ -34,6 +38,11 @@ namespace WCFDotNet
             return GetListItems;
         }
 
+        /// <summary>
+        /// returns the information of the authorized user. 
+        /// if the wrong login is entered or the password returns null 
+        /// </summary>
+        /// <returns></returns>
         public DCUser GetUser(string login, string password)
         {
             DTOUser Tmpuser = bllLogic.GetUser(login, password);
@@ -67,6 +76,11 @@ namespace WCFDotNet
             return GetUser;
         }
 
+        /// <summary>
+        /// Convert List DtoCpuFromShop to List DataContract CpuFromShop
+        /// </summary> 
+        /// <param name="TmpList"></param>
+        /// <returns></returns>
         private List<DCItemFromShop> ConvertCpuToDTOCpu(List<DTOCpuFromShop> TmpList)
         {
             List<DCItemFromShop> GetList = new List<DCItemFromShop>();
@@ -94,6 +108,11 @@ namespace WCFDotNet
             return GetList;
         }
 
+        /// <summary>
+        /// Convert List DtoMotherBoardFromShop to List DataContract MothrBoardFromShop
+        /// </summary>
+        /// <param name="TmpList"></param>
+        /// <returns></returns>
         private List<DCItemFromShop>
             ConvertMBToDTOMB(List<DTOMotherBoardFromShop> TmpList)
         {
@@ -121,16 +140,29 @@ namespace WCFDotNet
             return GetList;
         }
 
+        /// <summary>
+        /// gives the user status offline status
+        /// </summary>
+        /// <param name="Id"></param>
         public void UserOff(int Id)
         {
             bllLogic.UserOff(Id);
         }
 
+        /// <summary>
+        /// gives the user status online status
+        /// </summary>
+        /// <param name="Id"></param>
         public void UserOn(int Id)
         {
             bllLogic.UserOn(Id);
         }
 
+        /// <summary>
+        /// checks type and  Convert ItemFromShop with WCF DataContract to Bll DTO
+        /// </summary>
+        /// <param name="DCItem"></param>
+        /// <returns></returns>
         private DTOItemFromShop ConvertToDTOItem(DCItemFromShop DCItem)
         {
             DTOItemFromShop GetItem = null;
@@ -145,6 +177,11 @@ namespace WCFDotNet
             return GetItem;
         }
 
+        /// <summary>
+        /// Convert CpuFromShop with WCF DataContract to Bll DTO
+        /// </summary>
+        /// <param name="DCCPU"></param>
+        /// <returns></returns>
         private DTOItemFromShop ConvertToDTOCPUShop(DCCpuFromShop DCCPU)
         {
             return new DTOCpuFromShop
@@ -167,7 +204,12 @@ namespace WCFDotNet
                 }
             };
         }
-        
+
+        /// <summary>
+        /// Convert MotherBoardFromShop with WCF DataContract to Bll DTO
+        /// </summary>
+        /// <param name="DCMB"></param>
+        /// <returns></returns>
         private DTOMotherBoardFromShop ConvertToDTOMBShop(DCMBFromShop DCMB)
         {
             return new DTOMotherBoardFromShop
@@ -191,6 +233,11 @@ namespace WCFDotNet
 
         }
 
+        /// <summary>
+        /// Convert SaleItems with WCF DataContract to Bll DTO
+        /// </summary>
+        /// <param name="DCSaleItem"></param>
+        /// <returns></returns>
         private DTOSaleItem ConvertToDTOSaleItem(DCSaleItem DCSaleItem)
         {
             return new DTOSaleItem
@@ -202,11 +249,16 @@ namespace WCFDotNet
             };
         }
 
+        /// <summary>
+        /// transfer to Bll List of items for sale
+        /// </summary>
+        /// <param name="SaleItems"></param>
         public void SaleItems(List<DCSaleItem> DCSaleItems)
         {
             List<DTOSaleItem> DTOSaleItems = DCSaleItems.Select(x => ConvertToDTOSaleItem(x)).ToList();
             bllLogic.SaleItems(DTOSaleItems);
         }
+
 
         public List<DCItemFromProvider> GetItemsFromProvider()
         {

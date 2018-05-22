@@ -23,7 +23,6 @@ namespace DAL
         /// <param name="login"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-
         public User GetUser(string login, string password)
         {
             User Getuser = null;
@@ -62,6 +61,7 @@ namespace DAL
         /// returns a list of Cpu that are in the store database 
         /// </summary>
         /// <returns></returns>
+
         public List<CpuFromShop> GetCpuFromShop()
         {
             List<CpuFromShop> GetList = new List<CpuFromShop>();
@@ -94,6 +94,7 @@ namespace DAL
         /// returns a list of MotherBoard that are in the store database
         /// </summary>
         /// <returns></returns>
+
         public List<MBFromShop> GetMBFromShop()
         {
            
