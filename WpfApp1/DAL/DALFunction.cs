@@ -16,6 +16,14 @@ namespace DAL
     {
         private readonly ShopServerClient _service = new ShopServerClient();
 
+        /// <summary>
+        /// returns the information of the authorized user. 
+        /// if the wrong login is entered or the password returns null
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+
         public User GetUser(string login, string password)
         {
             User Getuser = null;
@@ -50,7 +58,10 @@ namespace DAL
            
             return Getuser;
         }
-
+        /// <summary>
+        /// returns a list of Cpu that are in the store database 
+        /// </summary>
+        /// <returns></returns>
         public List<CpuFromShop> GetCpuFromShop()
         {
             List<CpuFromShop> GetList = new List<CpuFromShop>();
@@ -79,7 +90,10 @@ namespace DAL
             ).ToList());
             return GetList;
         }
-
+        /// <summary>
+        /// returns a list of MotherBoard that are in the store database
+        /// </summary>
+        /// <returns></returns>
         public List<MBFromShop> GetMBFromShop()
         {
            
@@ -111,6 +125,11 @@ namespace DAL
             return GetList;
         }
 
+        /// <summary>
+        /// Convert byte array to BitmapImage
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
         public BitmapImage ConvertToImage(byte[] image)
         {
             BitmapImage GetImage = new BitmapImage();
@@ -125,16 +144,29 @@ namespace DAL
             return GetImage;
         }
 
+        /// <summary>
+        /// gives the user status offline status
+        /// </summary>
+        /// <param name="Id"></param>
         public void UserOff(int Id)
         {
             _service.UserOff(Id);
         }
 
+        /// <summary>
+        /// gives the user status online status
+        /// </summary>
+        /// <param name="Id"></param>
         public void UserOn(int Id)
         {
             _service.UserOn(Id);
         }
 
+        /// <summary>
+        /// Convert BitmapImage to byte array
+        /// </summary>
+        /// <param name="Image"></param>
+        /// <returns></returns>
         private Byte[] ConvertImageToBytes(BitmapImage Image)
         {
             byte[] GetImage = null;
@@ -149,6 +181,11 @@ namespace DAL
             return GetImage;
         }
 
+        /// <summary>
+        /// Convert CpuFromShop with Dal model to Wcf DataContract
+        /// </summary>
+        /// <param name="CPU"></param>
+        /// <returns></returns>
         private DCCpuFromShop ConvertToDCCPUShop(CpuFromShop CPU)
         {
             return new DCCpuFromShop
@@ -172,6 +209,11 @@ namespace DAL
             };
         }
 
+        /// <summary>
+        /// Convert MotherBoardFromShop with Dal model to Wcf DataContract
+        /// </summary>
+        /// <param name="MB"></param>
+        /// <returns></returns>
         private DCMBFromShop ConvertToDCMBShop(MBFromShop MB)
         {
             return new DCMBFromShop
@@ -194,6 +236,11 @@ namespace DAL
             };         
         }
 
+        /// <summary>
+        /// checks type and  Convert ItemFromShop with Dal model to Wcf DataContract
+        /// </summary>
+        /// <param name="SaleItem"></param>
+        /// <returns></returns>
         private DCItemFromShop ConvertToDCItemShop(ItemFromShop SaleItem)
         {
             DCItemFromShop GetItem = null;
@@ -208,6 +255,11 @@ namespace DAL
             return GetItem;
         }
 
+        /// <summary>
+        /// Convert SaleItem with Dal model to Wcf DataContract
+        /// </summary>
+        /// <param name="SaleItem"></param>
+        /// <returns></returns>
         private DCSaleItem ConvertToDCSaleItems(SaleItem SaleItem)
         {
             return new DCSaleItem
@@ -219,17 +271,30 @@ namespace DAL
             };
         }
 
+        /// <summary>
+        /// transfer to WCF sheet of items for sale
+        /// </summary>
+        /// <param name="SaleItems"></param>
         public void SaleItems(List<SaleItem> SaleItems)
         {
             List<DCSaleItem> DCSaleItems = SaleItems.Select(x => ConvertToDCSaleItems(x)).ToList();
             _service.SaleItems(DCSaleItems.ToArray());
         }
 
+        /// <summary>
+        /// returns a list of ItemFromProvider that are in the database
+        /// </summary>
+        /// <returns></returns>
         public List<ItemFromProvider> GetItemsFromProvider()
         {
             return _service.GetItemsFromProvider().Select(x => ConvertToItemProvider(x)).ToList();
         }
 
+        /// <summary>
+        /// checks type and  Convert ItemFromProvider with Wcf DataContract to Dal Model
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public ItemFromProvider ConvertToItemProvider(DCItemFromProvider Item)
         {
             ItemFromProvider GetItem = null;
@@ -244,6 +309,11 @@ namespace DAL
             return GetItem;
         }
 
+        /// <summary>
+        /// Convert CpuFromProvider with Wcf DataContract to Dal Model
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public CpuFromProvider ConvertToCpuProvider(DCCpuFromProvider Item)
         {
             return new CpuFromProvider
@@ -271,6 +341,11 @@ namespace DAL
             };
         }
 
+        /// <summary>
+        /// Convert MotherBoardFromProvider with Wcf DataContract to Dal Model
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public MBFromProvider ConvertToMBProvider(DCMBFromProvider Item)
         {
             return new MBFromProvider
@@ -297,11 +372,20 @@ namespace DAL
             };
         }
 
+        /// <summary>
+        /// transfer to WCF sheet of items for Buy
+        /// </summary>
+        /// <param name="BuyItems"></param>
         public void BuyItem(List<BuyItem> BuyItems)
         {
             _service.BuyItems(BuyItems.Select(x=> ConvertToDCBuyItem(x)).ToArray());
         }
 
+        /// <summary>
+        /// Convert BuyItem with Dal Model to DataContract WCf
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public DCBuyItem ConvertToDCBuyItem(BuyItem Item)
         {
             return new DCBuyItem
@@ -312,6 +396,11 @@ namespace DAL
             };
         }
 
+        /// <summary>
+        /// checks type and Convert ItemFromProvider with Dal Model to Wcf DataContract
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public DCItemFromProvider ConvertToItemProvider(ItemFromProvider Item)
         {
             DCItemFromProvider GetItem = null;
@@ -326,6 +415,11 @@ namespace DAL
             return GetItem;
         }
 
+        /// <summary>
+        /// Convert CpuFromProvider with Dal Model to Dal Model Wcf DataContract
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public DCCpuFromProvider ConvertToCpuProvider(CpuFromProvider Item)
         {
             return new DCCpuFromProvider
@@ -353,6 +447,11 @@ namespace DAL
             };
         }
 
+        /// <summary>
+        /// Convert MotherBoardFromProvider with Dal Model to Wcf DataContract
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public DCMBFromProvider ConvertToMotherBProvider(MBFromProvider Item)
         {
             return new DCMBFromProvider
