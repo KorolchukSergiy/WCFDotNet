@@ -20,6 +20,7 @@ namespace DotNet
         User User = null;
         List<CpuFromShop> ListCpu;
         List<MBFromShop> ListMotherBoard;
+
         List<SaleItem> saleItems = new List<SaleItem>();
         public Seller()
         {
@@ -28,6 +29,7 @@ namespace DotNet
             ShowCloseButton = false;
 
         }
+        
         /// <summary>
         /// Set authorized User
         /// </summary>
@@ -36,6 +38,7 @@ namespace DotNet
         {
             User = user;
         }
+        
         /// <summary>
         /// initialize the window
         /// </summary>
@@ -60,6 +63,7 @@ namespace DotNet
             MotherBDataGrid.SelectionChanged += Selecteditem;
             DalFunc.UserOn(User.Id);
         }
+        
         /// <summary>
         /// Set treeview for MotherBoard TabItem
         /// </summary>
@@ -71,6 +75,7 @@ namespace DotNet
             AddBoxInMotherBRamTree();
             AddBoxInMotherBSocketTree();
         }
+        
         /// <summary>
         /// Set treeview for Cpu TabItem
         /// </summary>
@@ -81,6 +86,7 @@ namespace DotNet
             AddBoxInCpuSocketTree();
             AddBoxInCpuVideoTree();
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem for Cpu Producer
         /// </summary>
@@ -101,6 +107,7 @@ namespace DotNet
                 CpuProducerTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem for Cpu Core
         /// </summary>
@@ -121,6 +128,7 @@ namespace DotNet
                 CpuCoreTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         ///  Set CheckBox in TreeItem for Cpu Socket
         /// </summary>
@@ -141,6 +149,7 @@ namespace DotNet
                 CpuSocketTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem for Cpu Video
         /// </summary>
@@ -161,6 +170,7 @@ namespace DotNet
                 CpuVideoTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem for MotherBoard Producer
         /// </summary>
@@ -181,6 +191,7 @@ namespace DotNet
                 MotherBProducerTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem for MotherBoard Socket
         /// </summary>
@@ -201,6 +212,7 @@ namespace DotNet
                 MotherBSocketTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem for MotherBoard ChipSet
         /// </summary>
@@ -221,6 +233,7 @@ namespace DotNet
                 MotherBChipSetTree.Items.Add(TmpCheckBox);
             }
         }
+        
         /// <summary>
         /// Set CheckBox in TreeItem for MotherBoard TypeRam
         /// </summary>
@@ -242,6 +255,7 @@ namespace DotNet
             }
         }
 
+
         private void LogOut(object sender, RoutedEventArgs e)
         {
             DALFunction DalFunc = new DALFunction();
@@ -256,6 +270,7 @@ namespace DotNet
             MainWindow.exit = true;
             Close();
         }
+        
         /// <summary>
         /// Checked CheckBox for Cpu, display Cpu depending on checked CheckBox
         /// </summary>
@@ -277,6 +292,7 @@ namespace DotNet
                                       && video.IndexOf(x.Video) >= 0).ToList();
             CpusDataGrid.ItemsSource = BindingCpu;
         }
+        
         /// <summary>
         /// collect information about the selected CheckBox Cpu
         /// </summary>
@@ -319,6 +335,7 @@ namespace DotNet
                 }
             }
         }
+        
         /// <summary>
         /// Checked CheckBox for MotherBoard, display MotherBoard depending on checked CheckBox
         /// </summary>
@@ -341,6 +358,7 @@ namespace DotNet
                                       && chipset.IndexOf(x.ChipSet) >= 0).ToList();
             MotherBDataGrid.ItemsSource = BindingMB;
         }
+        
         /// <summary>
         /// collect information about the selected CheckBox MotherBoard
         /// </summary>
@@ -383,6 +401,7 @@ namespace DotNet
                 }
             }
         }
+        
         /// <summary>
         /// Find and Display Item by Name
         /// </summary>
@@ -405,6 +424,7 @@ namespace DotNet
                                                 >= 0).ToList();
             }
         }
+        
         /// <summary>
         /// update data when changing TabItem
         /// </summary>
@@ -428,6 +448,7 @@ namespace DotNet
             MotherBDataGrid.ItemsSource = ListMotherBoard;
             FindBox.Text = string.Empty;
         }
+        
         /// <summary>
         /// setting the maximum value for item sales
         /// </summary>
@@ -457,6 +478,7 @@ namespace DotNet
             }
             QuantityNumber.Value = 0;
         }
+        
         /// <summary>
         /// adding an item to the price list
         /// </summary>
@@ -510,6 +532,7 @@ namespace DotNet
             SalaryDataGrid.ItemsSource = null;
             SalaryDataGrid.ItemsSource = saleItems;
         }
+        
         /// <summary>
         /// Clear Salery List
         /// </summary>
@@ -520,6 +543,7 @@ namespace DotNet
             saleItems.Clear();
             SalaryDataGrid.ItemsSource = null;
         }
+        
         /// <summary>
         /// Delete Item with salery list
         /// </summary>
@@ -536,6 +560,7 @@ namespace DotNet
             SalaryDataGrid.ItemsSource = null;
             SalaryDataGrid.ItemsSource = saleItems;
         }
+        
         /// <summary>
         /// printed a check and sold items
         /// </summary>
@@ -568,6 +593,7 @@ namespace DotNet
             }
 
         }
+        
         /// <summary>
         /// refresh all TabItems and TreeView
         /// </summary>
