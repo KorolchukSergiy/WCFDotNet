@@ -259,12 +259,20 @@ namespace WCFDotNet
             bllLogic.SaleItems(DTOSaleItems);
         }
 
-
+        /// <summary>
+        /// checks type and  Convert List ItemFromProvider with Dll DTO to WCF DataContract
+        /// </summary>
+        /// <returns></returns>
         public List<DCItemFromProvider> GetItemsFromProvider()
         {
             return bllLogic.GetDTOItemFromProviders().Select(x => ConvertToDCItemProvider(x)).ToList();
         }
 
+        /// <summary>
+        /// checks type and  Convert ItemFromProvider with Dll DTO to WCF DataContract
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public DCItemFromProvider ConvertToDCItemProvider(DTOItemFromProvider Item)
         {
             DCItemFromProvider GetItem = null;
@@ -280,6 +288,11 @@ namespace WCFDotNet
             return GetItem;
         }
 
+        /// <summary>
+        /// Convert CpuFromProvider with Dll DTO to WCF DataContract
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public DCCpuFromProvider ConvertToDCCpu(DTOCpuFromProvider Item)
         {
             return new DCCpuFromProvider
@@ -307,6 +320,11 @@ namespace WCFDotNet
             };
         }
 
+        /// <summary>
+        /// Convert MotherBoardFromProvider with Dll DTO to WCF DataContract
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public DCMBFromProvider ConvertToDCMB(DTOMotherBoardFromProvider Item)
         {
             return new DCMBFromProvider
@@ -333,6 +351,11 @@ namespace WCFDotNet
             };
         }
         
+        /// <summary>
+        /// Convert Provider with Bll DTo to WCF DataContract
+        /// </summary>
+        /// <param name="Provider"></param>
+        /// <returns></returns>
         public DCProvider ConvertToDCProvider(DTOProvider Provider)
         {
             DCProvider GetProvider = null;
@@ -347,11 +370,20 @@ namespace WCFDotNet
             return GetProvider;
         }
 
+        /// <summary>
+        /// Convert BuyItems with WCF DataContract to Bll DTO and transfer to Bll
+        /// </summary>
+        /// <param name="BuyItems"></param>
         public void BuyItems(DCBuyItem[] BuyItems)
         {
             bllLogic.BuyItem(BuyItems.Select(x => ConvertToBuyItem(x)).ToList());
         }
 
+        /// <summary>
+        /// Convert BuyItem with Wcf DataContract to Bll DTO
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public DTOBuyItem ConvertToBuyItem(DCBuyItem Item)
         {
             return new DTOBuyItem
@@ -362,6 +394,11 @@ namespace WCFDotNet
             };
         }
 
+        /// <summary>
+        /// checks type and  Convert ItemFromProvider with WCF DataContract to Bll DTO
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public DTOItemFromProvider ConvertToItemProvider(DCItemFromProvider Item)
         {
             DTOItemFromProvider GetItem = null;
@@ -376,6 +413,11 @@ namespace WCFDotNet
             return GetItem;
         }
 
+        /// <summary>
+        /// Convert CpuFromProvider with WCF DataContract to Bll DTO
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public DTOCpuFromProvider ConvertToCpuProvider(DCCpuFromProvider Item)
         {
             return new DTOCpuFromProvider
@@ -403,6 +445,11 @@ namespace WCFDotNet
             };
         }
 
+        /// <summary>
+        /// Convert MotherBoardFromProvider with WCF DataContract to Bll DTO
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public DTOMotherBoardFromProvider ConvertToMotherBProvider(DCMBFromProvider Item)
         {
             return new DTOMotherBoardFromProvider
